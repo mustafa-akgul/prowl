@@ -35,6 +35,12 @@ classifiers = [
 # Dockerfiles and CI workflows). Keep the two files in sync.
 dependencies = []
 
+[project.urls]
+Repository = "https://github.com/mustafa-akgul/prowl"
+Documentation = "https://github.com/mustafa-akgul/prowl/tree/main/docs"
+Changelog = "https://github.com/mustafa-akgul/prowl/blob/main/CHANGELOG.md"
+Issues = "https://github.com/mustafa-akgul/prowl/issues"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0.0",

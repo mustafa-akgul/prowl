@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Documentation set rewritten in English (README, architecture, API reference, roadmap)
 - Codebase formatted and linted with Ruff; project metadata moved to `pyproject.toml`
 
+### Added
+- `GET /health` liveness endpoint (the docker-compose healthcheck previously targeted a nonexistent route)
+
 ### Fixed
 - Declared previously missing runtime dependencies (`sqlalchemy`, `aiosqlite`, `nest_asyncio`)
 

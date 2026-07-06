@@ -5,7 +5,7 @@ Thanks for your interest in improving PRowl!
 ## Development setup
 
 ```bash
-git clone https://github.com/<your-username>/prowl.git && cd prowl
+git clone https://github.com/mustafa-akgul/prowl.git && cd prowl
 pip install -r requirements.txt
 pip install -e ".[dev]"
 cp .env.example .env        # fill in the keys you need

@@ -212,6 +212,12 @@ class PromptSaveRequest(BaseModel):
 # ──────────────────────────────────────────────
 
 
+@app.get("/health")
+async def health() -> dict[str, str]:
+    """Liveness probe used by container healthchecks."""
+    return {"status": "ok"}
+
+
 @app.get("/", response_class=HTMLResponse)
 async def page_dashboard(request: Request) -> HTMLResponse:
     """Renders the review dashboard page."""
