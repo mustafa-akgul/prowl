@@ -1,7 +1,7 @@
 # Roadmap
 
-This document tracks completed milestones and the forward-looking plan for the
-AI Code Review Agent. Items are grouped into phases; each phase is independently
+This document tracks completed milestones and the forward-looking plan for
+PRowl. Items are grouped into phases; each phase is independently
 shippable.
 
 ## Completed

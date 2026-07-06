@@ -68,7 +68,7 @@ def _print_banner(port: int, api: dict[str, str] | None = None) -> None:
     print(
         f"""
 ╔══════════════════════════════════════════════╗
-║         AI Code Review Agent  v3.0           ║
+║      PRowl — AI Code Review Agent  v3.0      ║
 ╚══════════════════════════════════════════════╝
 
   Dashboard  →  http://localhost:{port}

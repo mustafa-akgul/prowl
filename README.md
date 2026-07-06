@@ -1,4 +1,6 @@
-# 🤖 AI Code Review Agent
+# 🦉 PRowl
+
+> **An owl on the prowl for bugs in your PRs.**
 
 [![Python](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
@@ -7,7 +9,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-28%20passing-brightgreen.svg)](tests/)
 
-An AI-powered code review agent that reviews GitHub pull requests using
+**PRowl** is an AI-powered code review agent that reviews GitHub pull requests using
 **Google Gemini** or **local Ollama models**, enriched with **Jira ticket
 context** and **RAG-based corporate knowledge**. Reviews can be triggered from
 a web dashboard, the CLI, GitHub Actions, PR comments (`@review-agent`), or
@@ -90,7 +92,7 @@ More detail: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · REST endpoints: [do
 ### Local
 
 ```bash
-git clone <repo-url> && cd review-agent
+git clone https://github.com/<your-username>/prowl.git && cd prowl
 pip install -r requirements.txt
 
 cp .env.example .env          # fill in your API keys
@@ -152,7 +154,7 @@ secrets (`GEMINI_API_KEY`, optional Jira credentials).
 ## 📁 Project Structure
 
 ```
-review-agent/
+prowl/
 ├── main.py                  # Dashboard entry point (uvicorn launcher)
 ├── agent/
 │   ├── review_agent.py      # Review orchestrator (CLI + pipeline)

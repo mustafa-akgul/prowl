@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Changed
+- Rebranded the project as **PRowl** 🦉
 - Dashboard UI translated from Turkish to English
 - Documentation set rewritten in English (README, architecture, API reference, roadmap)
 - Codebase formatted and linted with Ruff; project metadata moved to `pyproject.toml`

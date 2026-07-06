@@ -1,11 +1,11 @@
 # Contributing
 
-Thanks for your interest in improving the AI Code Review Agent!
+Thanks for your interest in improving PRowl!
 
 ## Development setup
 
 ```bash
-git clone <repo-url> && cd review-agent
+git clone https://github.com/<your-username>/prowl.git && cd prowl
 pip install -r requirements.txt
 pip install -e ".[dev]"
 cp .env.example .env        # fill in the keys you need
