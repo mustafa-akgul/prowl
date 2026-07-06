@@ -1,0 +1,35 @@
+# Core
+atlassian-python-api>=3.41.0
+PyGithub>=2.1.0
+python-dotenv>=1.0.0
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+jinja2>=3.1.0
+google-genai>=1.0.0
+ollama>=0.4.0
+pydantic>=2.0.0
+
+# Persistence — async SQLite review history
+sqlalchemy>=2.0.0
+aiosqlite>=0.20.0
+nest_asyncio>=1.6.0
+
+# RAG — Vector Store
+chromadb>=0.5.0
+
+# Async Task Queue
+celery>=5.4.0
+redis>=5.0.0
+
+# Report Generation
+weasyprint>=62.0
+
+# Notifications (optional — email is stdlib, these support Slack/Teams)
+# No extra deps needed — uses urllib.request
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+
+# Optional: Better embeddings (install separately if needed)
+# sentence-transformers>=2.2.0

@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "review-agent"
+version = "3.0.0"
+description = "AI-powered code review agent — reviews GitHub PRs with Gemini or local Ollama models, enriched with Jira context and RAG-based corporate knowledge"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Mustafa Talha Akgül" }]
+keywords = [
+    "code-review",
+    "ai-agent",
+    "llm",
+    "github",
+    "jira",
+    "gemini",
+    "ollama",
+    "rag",
+    "fastapi",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Quality Assurance",
+    "Framework :: FastAPI",
+]
+
+# Runtime dependencies are managed in requirements.txt (used by the
+# Dockerfiles and CI workflows). Keep the two files in sync.
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.8.0",
+    "pre-commit>=4.0.0",
+]
+
+[tool.setuptools]
+packages = ["agent", "agent.rag"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".data", "docs"]
+
+[tool.ruff.lint]
+# E/W: pycodestyle, F: pyflakes, I: isort
+select = ["E4", "E7", "E9", "F", "I", "W"]
+ignore = [
+    "E501", # long lines — prompt strings and templates exceed the limit intentionally
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["agent"]
+
+[tool.ruff.lint.per-file-ignores]
+# Deliberate import ordering: platform detection / env setup must run
+# before the Celery app and its task modules are imported.
+"agent/celery_app.py" = ["E402"]
+"agent/worker.py" = ["E402"]
+"agent/dashboard.py" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+check_untyped_defs = true
