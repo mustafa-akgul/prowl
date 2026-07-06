@@ -164,7 +164,7 @@ _REPORT_TEMPLATE = """<!DOCTYPE html>
         </div>
 
         <div class="footer">
-            AI Code Review Agent v3.0 — Generated {{ generated_at }}
+            AI Code Review Agent v3.1 — Generated {{ generated_at }}
         </div>
     </div>
 </body>

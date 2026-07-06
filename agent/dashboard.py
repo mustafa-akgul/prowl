@@ -90,7 +90,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="AI Code Review Agent",
     description="Web panel for automated code review powered by Gemini AI",
-    version="3.0.0",
+    version="3.1.0",
     lifespan=lifespan,
 )
 

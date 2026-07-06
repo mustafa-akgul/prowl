@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "prowl"
-version = "3.0.0"
+version = "3.1.0"
 description = "PRowl — an owl on the prowl for bugs in your PRs. AI code review with Gemini or local Ollama, enriched with Jira context and RAG-based corporate knowledge"
 readme = "README.md"
 requires-python = ">=3.11"
