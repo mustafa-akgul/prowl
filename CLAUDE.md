@@ -84,7 +84,6 @@ Core: `GEMINI_API_KEY`, `GITHUB_TOKEN`, `GITHUB_REPO`. Jira: `JIRA_URL`, `JIRA_E
 
 - **Jira Cloud only**: `JiraClient` hardcodes `cloud=True`
 - **`JIRA_AC_FIELD` has no Settings UI** — set via `.env` or `.data/config.json`
-- **docker-compose healthcheck** targets `/health`, which is not implemented in `dashboard.py` yet — the container reports unhealthy even when fine (tracked as a known issue)
 - `history_manager.py` bridges async SQLAlchemy into sync callers with `nest_asyncio`; be careful when touching event-loop code
 
 ## Adding a New Review Mode
