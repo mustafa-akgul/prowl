@@ -11,7 +11,7 @@ pydantic>=2.0.0
 
 # Persistence — async SQLite review history
 sqlalchemy>=2.0.0
-aiosqlite>=0.20.0
+aiosqlite>=0.22.1
 nest_asyncio>=1.6.0
 
 # RAG — Vector Store
