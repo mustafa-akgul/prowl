@@ -1,0 +1,89 @@
+# ═══════════════════════════════════════════════════
+# AI Code Review Agent — Docker Compose
+# ═══════════════════════════════════════════════════
+# Usage:
+#   docker-compose up -d        # Start all services
+#   docker-compose logs -f      # Follow logs
+#   docker-compose down         # Stop all services
+
+version: "3.9"
+
+services:
+  # ─── Redis Message Broker ───
+  redis:
+    image: redis:7-alpine
+    container_name: review-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ─── Dashboard (FastAPI Web Panel) ───
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: review-dashboard
+    env_file: .env
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8080:8080"
+    volumes:
+      - app_data:/app/.data
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # ─── Celery Worker ───
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: review-worker
+    env_file: .env
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    volumes:
+      - app_data:/app/.data
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.0"
+
+  # ─── Nginx Reverse Proxy ───
+  nginx:
+    image: nginx:alpine
+    container_name: review-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - dashboard
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+    driver: local
+  app_data:
+    driver: local

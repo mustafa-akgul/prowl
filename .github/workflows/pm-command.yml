@@ -1,0 +1,63 @@
+# AI Code Review Agent — PM Command Trigger
+# Runs when @review-agent is mentioned in a PR comment.
+# Comment format: @review-agent [mode: security|performance|base] [optional instructions]
+# Example: @review-agent mode: security focus on authentication flows
+
+name: AI Code Review (PM Command)
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  pull-requests: write
+  issues: write
+  contents: read
+
+jobs:
+  pm-review:
+    runs-on: ubuntu-latest
+    # Only run on PR comments that mention @review-agent
+    if: >
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, '@review-agent')
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Parse comment and run agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          JIRA_URL: ${{ secrets.JIRA_URL }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_REVIEW_STATUS: ${{ secrets.JIRA_REVIEW_STATUS || 'In Review' }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+        run: |
+          PR_NUMBER=${{ github.event.issue.number }}
+
+          # Extract mode from comment (default: base)
+          MODE=$(echo "$COMMENT_BODY" | grep -oE 'mode:\s*(security|performance|base)' | grep -oE '(security|performance|base)' || echo "base")
+
+          # Strip @review-agent and mode: <value> from the comment, use the rest as instructions
+          INSTRUCTIONS=$(echo "$COMMENT_BODY" | sed -E 's/@review-agent//g' | sed -E 's/mode:[[:space:]]*(security|performance|base)//g' | xargs)
+
+          echo "PR: #$PR_NUMBER | Mode: $MODE | Instructions: $INSTRUCTIONS"
+
+          if [ -n "$INSTRUCTIONS" ]; then
+            python -m agent.review_agent --pr "$PR_NUMBER" --mode "$MODE" --instructions "$INSTRUCTIONS"
+          else
+            python -m agent.review_agent --pr "$PR_NUMBER" --mode "$MODE"
+          fi
