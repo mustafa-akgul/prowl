@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "review-agent"
+name = "prowl"
 version = "3.0.0"
-description = "AI-powered code review agent — reviews GitHub PRs with Gemini or local Ollama models, enriched with Jira context and RAG-based corporate knowledge"
+description = "PRowl — an owl on the prowl for bugs in your PRs. AI code review with Gemini or local Ollama, enriched with Jira context and RAG-based corporate knowledge"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }

@@ -12,7 +12,7 @@ services:
   # ─── Redis Message Broker ───
   redis:
     image: redis:7-alpine
-    container_name: review-redis
+    container_name: prowl-redis
     ports:
       - "6379:6379"
     volumes:
@@ -29,7 +29,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: review-dashboard
+    container_name: prowl-dashboard
     env_file: .env
     environment:
       - REDIS_URL=redis://redis:6379/0
@@ -52,7 +52,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.worker
-    container_name: review-worker
+    container_name: prowl-worker
     env_file: .env
     environment:
       - REDIS_URL=redis://redis:6379/0
@@ -72,7 +72,7 @@ services:
   # ─── Nginx Reverse Proxy ───
   nginx:
     image: nginx:alpine
-    container_name: review-nginx
+    container_name: prowl-nginx
     ports:
       - "80:80"
       - "443:443"

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Purpose
 
-An AI Code Review Agent that reviews GitHub PRs using Google Gemini or local Ollama models. Reviews are triggered from a web dashboard, the CLI, GitHub Actions, `@review-agent` PR comments, or GitHub/Jira webhooks. Results are posted as PR comments, Jira updates, HTML/PDF reports, and email/Slack/Teams notifications.
+**PRowl** — an AI code review agent that reviews GitHub PRs using Google Gemini or local Ollama models. Reviews are triggered from a web dashboard, the CLI, GitHub Actions, `@review-agent` PR comments, or GitHub/Jira webhooks. Results are posted as PR comments, Jira updates, HTML/PDF reports, and email/Slack/Teams notifications.
 
 ## Commands
 
