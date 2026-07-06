@@ -49,7 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Light/dark theme, PR detail modal with rendered diffs
 
 ### Changed
-- Switched the primary LLM from Anthropic Claude to Google Gemini
+- Standardized on Google Gemini as the primary hosted LLM provider
 
 ## [1.0.0] — 2026-02-25
 

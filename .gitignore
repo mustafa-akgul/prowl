@@ -23,9 +23,6 @@ config.json
 *.sqlite
 tmp/
 
-# Claude Code local settings (skills are shared, local overrides are not)
-.claude/settings.local.json
-
 # IDEs
 .vscode/
 .idea/
