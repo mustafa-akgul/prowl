@@ -45,7 +45,7 @@ Issues = "https://github.com/mustafa-akgul/prowl/issues"
 dev = [
     "pytest>=8.0.0",
     "pytest-asyncio>=0.23.0",
-    "ruff>=0.8.0",
+    "ruff>=0.15.21",
     "pre-commit>=4.0.0",
 ]
 
